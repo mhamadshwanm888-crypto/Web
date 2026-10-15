@@ -1,4 +1,4 @@
-name: بڵاوکردنەوەی لایڤ لەسەر GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -22,26 +22,25 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: هێنانەوەی کۆدەکان (Checkout)
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: ڕێکخستنی نۆد (Setup Node.js)
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
-      - name: دامەزراندنی پێداویستییەکان (Install dependencies)
-        run: npm install
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
 
-      - name: دروستکردنی فایلی کۆتایی (Build production)
+      - name: Build production
         run: npm run build
 
-      - name: ئامادەکردنی لاپەڕە (Upload Pages artifact)
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
 
-      - name: بڵاوکردنەوەی لایڤ (Deploy to GitHub Pages)
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
