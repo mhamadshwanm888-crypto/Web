@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#grad)" />
+  <!-- Ballot Box & Checkmark -->
+  <g fill="none" stroke="#ffffff" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" transform="translate(56, 56) scale(0.78)">
+    <path d="M64 128h384v288H64z" stroke="#a7f3d0" fill="#065f46" stroke-width="24" rx="24"/>
+    <path d="M140 128V80a24 24 0 0 1 24-24h184a24 24 0 0 1 24 24v48" stroke="#ffffff" stroke-width="28"/>
+    <path d="M190 270l50 50 120-120" stroke="#34d399" stroke-width="36"/>
+    <line x1="160" y1="360" x2="352" y2="360" stroke="#a7f3d0" stroke-width="20"/>
+  </g>
+</svg>

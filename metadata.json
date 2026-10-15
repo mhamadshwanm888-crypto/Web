@@ -1,0 +1,8 @@
+{
+  "name": "سیستەمی تۆماری دەنگدەران و ستاف",
+  "description": "سیستەمێکی پێشکەوتووی تۆماری داتابەیس بۆ داخلکردنی زانیاری دەنگدەران، بڕوانامە، مۆبایل، ئەرک و دەرهێنانی داتا بە فایلی ئێکسڵ (Excel)",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
