@@ -55,8 +55,7 @@ export const VoterForm: React.FC<VoterFormProps> = ({ onSuccess, votersCount }) 
   const [qualification, setQualification] = useState<string>('بەکالۆریۆس');
   const [customQualification, setCustomQualification] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [role, setRole] = useState<string>('دەنگدەر');
-  const [customRole, setCustomRole] = useState('');
+  const [role, setRole] = useState<string>('');
   const [notes, setNotes] = useState('');
 
   // UI state
@@ -105,8 +104,7 @@ export const VoterForm: React.FC<VoterFormProps> = ({ onSuccess, votersCount }) 
     setQualification('بەکالۆریۆس');
     setCustomQualification('');
     setPhoneNumber('');
-    setRole('دەنگدەر');
-    setCustomRole('');
+    setRole('');
     setNotes('');
     setErrorMsg(null);
   };
@@ -150,9 +148,11 @@ export const VoterForm: React.FC<VoterFormProps> = ({ onSuccess, votersCount }) 
       ? (customQualification.trim() || 'دیاری نەکراوە')
       : qualification;
 
-    const finalRole = role === 'هیتر'
-      ? (customRole.trim() || 'دیاری نەکراوە')
-      : role;
+    const finalRole = role.trim();
+    if (!finalRole) {
+      setErrorMsg('تکایە ئەرک و بەرپرسیارێتی بنووسە.');
+      return;
+    }
 
     // تۆمارکردن لە داتابەیس
     const res = addVoter({
@@ -433,29 +433,18 @@ export const VoterForm: React.FC<VoterFormProps> = ({ onSuccess, votersCount }) 
               ئەرک و بەرپرسیارێتی <span className="text-red-500">*</span>
             </label>
 
-            <select
+            <input
               id={`${formId}-role`}
+              type="text"
+              required
               value={role}
-              onChange={(e) => setRole(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-hidden transition text-slate-800 font-medium cursor-pointer"
-            >
-              {COMMON_ROLES.map((r) => (
-                <option key={r} value={r}>
-                  {r}
-                </option>
-              ))}
-              <option value="هیتر">ئەرکێکی تر (بە دەست بنووسە)...</option>
-            </select>
-
-            {role === 'هیتر' && (
-              <input
-                type="text"
-                value={customRole}
-                onChange={(e) => setCustomRole(e.target.value)}
-                placeholder="ناوی ئەرک و بەرپرسیارێتییەکە بنووسە..."
-                className="w-full mt-2 px-3.5 py-2 text-sm rounded-lg border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-hidden"
-              />
-            )}
+              onChange={(e) => {
+                setRole(e.target.value);
+                if (errorMsg) setErrorMsg(null);
+              }}
+              placeholder="ئەرک و بەرپرسیارێتی بنووسە (وەک: سەرپەرشتیاری بنکە، دەنگدەر، چاودێر...)"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-hidden transition text-slate-800 font-medium placeholder:text-slate-400 placeholder:font-normal"
+            />
           </div>
         </div>
 

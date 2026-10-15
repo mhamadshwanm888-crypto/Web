@@ -104,9 +104,11 @@ export const EditVoterModal: React.FC<EditVoterModalProps> = ({ voter, onClose, 
       ? (customQualification.trim() || 'دیاری نەکراوە')
       : qualification;
 
-    const finalRole = role === 'هیتر'
-      ? (customRole.trim() || 'دیاری نەکراوە')
-      : role;
+    const finalRole = role.trim();
+    if (!finalRole) {
+      setErrorMsg('تکایە ئەرک و بەرپرسیارێتی بنووسە.');
+      return;
+    }
 
     const res = updateVoter(voter.id, {
       fullName: fullName.trim(),
@@ -277,28 +279,15 @@ export const EditVoterModal: React.FC<EditVoterModalProps> = ({ voter, onClose, 
                 <Briefcase className="w-3.5 h-3.5 text-emerald-600" />
                 ئەرک و بەرپرسیارێتی:
               </label>
-              <select
+              <input
                 id={`${formId}-edit-role`}
+                type="text"
+                required
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="w-full px-3.5 py-2 text-sm rounded-xl border border-slate-300 bg-white focus:border-emerald-500 outline-hidden font-medium"
-              >
-                {COMMON_ROLES.map((r) => (
-                  <option key={r} value={r}>
-                    {r}
-                  </option>
-                ))}
-                <option value="هیتر">ئەرکێکی تر...</option>
-              </select>
-              {role === 'هیتر' && (
-                <input
-                  type="text"
-                  value={customRole}
-                  onChange={(e) => setCustomRole(e.target.value)}
-                  placeholder="ناوی ئەرک بنووسە..."
-                  className="w-full mt-2 px-3 py-1.5 text-sm rounded-lg border border-slate-300"
-                />
-              )}
+                placeholder="ئەرک و بەرپرسیارێتی بنووسە..."
+                className="w-full px-3.5 py-2 text-sm rounded-xl border border-slate-300 focus:border-emerald-500 outline-hidden font-medium"
+              />
             </div>
           </div>
 

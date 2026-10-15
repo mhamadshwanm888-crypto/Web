@@ -117,14 +117,7 @@ export function downloadOfflineHTML(): void {
           <!-- Role -->
           <div>
             <label class="block text-sm font-semibold text-slate-700 mb-1">ئەرک و بەرپرسیارێتی <span class="text-red-500">*</span></label>
-            <select id="role" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-white font-medium outline-hidden">
-              <option value="دەنگدەر" selected>دەنگدەر</option>
-              <option value="سەرپەرشتیاری بنکە">سەرپەرشتیاری بنکە</option>
-              <option value="بەرپرسی وێستگە">بەرپرسی وێستگە</option>
-              <option value="چاودێری سیاسی">چاودێری سیاسی</option>
-              <option value="نوێنەری قەوارە">نوێنەری قەوارە</option>
-              <option value="کارگێڕی و لۆجستی">کارگێڕی و لۆجستی</option>
-            </select>
+            <input id="role" type="text" required placeholder="ئەرک و بەرپرسیارێتی بنووسە..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-emerald-500 outline-hidden font-medium">
           </div>
         </div>
 
